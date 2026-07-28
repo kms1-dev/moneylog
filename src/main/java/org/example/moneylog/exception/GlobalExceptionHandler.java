@@ -3,6 +3,7 @@ package org.example.moneylog.exception;
 import org.example.moneylog.dto.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -47,6 +48,13 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiResponse<Void>> handleInvalidCredentials(InvalidCredentialsException e) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(ApiResponse.error("INVALID_CREDENTIALS", e.getMessage()));
+    }
+
+    // 요청 본문 JSON이 깨졌거나 형식이 안 맞을 때. (이걸 안 잡으면 스프링 기본 에러 형식으로 나간다)
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<ApiResponse<Void>> handleNotReadable(HttpMessageNotReadableException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(ApiResponse.error("VALIDATION_ERROR", "요청 내용을 읽을 수 없습니다. 형식을 확인해주세요."));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
