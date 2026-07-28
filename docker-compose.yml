@@ -1,0 +1,26 @@
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: moneylog
+      MYSQL_USER: moneyloguser
+      MYSQL_PASSWORD: money1234
+      MYSQL_ROOT_PASSWORD: root1234
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    restart: unless-stopped
+
+  app:
+    build: .
+    depends_on:
+      - mysql
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+    ports:
+      - "8081:8080"
+    restart: on-failure
+
+volumes:
+  mysql-data:
