@@ -6,10 +6,12 @@
 ## 바로가기
 
 - 배포 주소: http://13.125.251.47:8080
-- 테스트 계정: `hong@moneylog.com` / `pass1234`
+- 테스트 계정: `hong@moneylog.com` / `pass1234` (거래내역 5건 있음)
+- 비교용 계정: `kim@moneylog.com` / `pass1234` (비어있음 — 남의 데이터가 안 보이는 걸 확인용)
 - API 문서(Swagger): http://13.125.251.47:8080/swagger-ui/index.html
 - 설계 문서: [요구사항 정의서](docs/requirements.md), [ERD](docs/erd.md), [API 명세서](docs/api-spec.md)
 - [회고](docs/retrospective.md)
+- [발표 스크립트](docs/presentation-script.md)
 
 ## 만든 기능
 
