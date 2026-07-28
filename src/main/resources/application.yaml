@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: moneylog
+
+  datasource:
+    # 운영(MySQL) 설정 - 4일차 배포할 때 사용
+    # url: jdbc:mysql://localhost:3306/moneylog?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    # username: moneyloguser
+    # password: money1234
+    # driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:h2:file:./data/moneylogdb;AUTO_RECONNECT=TRUE;AUTO_SERVER=TRUE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+jwt:
+  # 3일차에 실제 값으로 교체 (환경변수로 빼는 게 안전함)
+  secret: moneylog-study-secret-key-change-me-please-1234567890
+  expiration-ms: 3600000
