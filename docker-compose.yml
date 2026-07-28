@@ -25,7 +25,8 @@ services:
     ports:
       # 로컬은 8081, EC2에서는 .env에서 APP_PORT=8080으로 바꿔서 쓴다.
       - "${APP_PORT:-8081}:8080"
-    restart: on-failure
+    # 서버가 재부팅돼도 앱이 다시 뜨도록 unless-stopped로 둔다.
+    restart: unless-stopped
 
 volumes:
   mysql-data:
