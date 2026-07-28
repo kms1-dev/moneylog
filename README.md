@@ -26,7 +26,7 @@
 - 🔐 회원가입 / 로그인 (JWT, BCrypt)
 - 📁 카테고리 관리 (가입 시 기본 시드 + 추가/수정/삭제)
 - 💸 거래내역 CRUD (수입/지출 등록·조회·수정·삭제)
-- 🔍 월별 목록 조회 + 페이징
+- 🔍 월별 목록 조회 + 페이징 (타입/카테고리 필터는 미구현)
 - 📊 월별 통계 (총수입/총지출/잔액 + 카테고리별 지출)
 - 🛡 본인 데이터만 접근 가능한 인가
 - ✅ 입력 검증 + 공통 에러 응답 형식
@@ -112,7 +112,7 @@ docker compose up -d --build
 | POST | `/api/auth/login` | 로그인 (JWT 발급) |
 | GET/POST | `/api/categories` | 카테고리 조회/추가 |
 | PUT/DELETE | `/api/categories/{id}` | 카테고리 수정/삭제 |
-| GET/POST | `/api/transactions` | 거래내역 조회(필터/페이징)/등록 |
+| GET/POST | `/api/transactions` | 거래내역 월별 조회(페이징)/등록 |
 | GET/PUT/DELETE | `/api/transactions/{id}` | 거래 상세/수정/삭제 |
 | GET | `/api/statistics/monthly?yearMonth=2026-07` | 월별 통계 |
 
