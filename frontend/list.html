@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>머니로그 - 거래내역</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="container" style="max-width: 720px;">
+    <div class="top-bar">
+      <h1>머니로그</h1>
+      <button onclick="logout()">로그아웃</button>
+    </div>
+
+    <div class="summary-box" id="summary-box">
+      <span>이번 달 수입: <span id="summary-income">-</span>원</span>
+      <span>지출: <span id="summary-expense">-</span>원</span>
+      <span>잔액: <span id="summary-balance">-</span>원</span>
+    </div>
+
+    <h2>거래 등록</h2>
+    <label>구분</label>
+    <select id="new-type">
+      <option value="EXPENSE">지출</option>
+      <option value="INCOME">수입</option>
+    </select>
+    <label>카테고리</label>
+    <select id="new-category"></select>
+    <label>금액</label>
+    <input type="number" id="new-amount" placeholder="12000" />
+    <label>날짜</label>
+    <input type="date" id="new-date" />
+    <label>설명</label>
+    <input type="text" id="new-description" placeholder="점심 - 김치찌개" />
+    <button onclick="createTransaction()">등록</button>
+    <div class="error-message" id="create-error"></div>
+
+    <h2>이번 달 거래내역</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>날짜</th>
+          <th>구분</th>
+          <th>카테고리</th>
+          <th>금액</th>
+          <th>설명</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="transaction-list"></tbody>
+    </table>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/list.js"></script>
+</body>
+</html>
