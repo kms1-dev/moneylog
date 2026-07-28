@@ -11,7 +11,6 @@
 - API 문서(Swagger): http://13.125.251.47:8080/swagger-ui/index.html
 - 설계 문서: [요구사항 정의서](docs/requirements.md), [ERD](docs/erd.md), [API 명세서](docs/api-spec.md)
 - [회고](docs/retrospective.md)
-- [발표 스크립트](docs/presentation-script.md)
 
 ## 만든 기능
 
