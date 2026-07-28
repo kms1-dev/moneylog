@@ -8,6 +8,28 @@
 - [요구사항 정의서](docs/requirements.md)
 - [ERD / 테이블 정의서](docs/erd.md)
 - [API 명세서](docs/api-spec.md)
+- [회고](docs/retrospective.md)
+
+## 제출물 체크리스트
+
+- [x] GitHub 저장소: https://github.com/kms1-dev/moneylog
+- [x] 실제 배포 URL: http://13.125.251.47:8080
+- [x] Swagger: http://13.125.251.47:8080/swagger-ui/index.html
+- [x] 요구사항·설계 문서: `docs/requirements.md`, `docs/erd.md`, `docs/api-spec.md`
+- [x] 회고: `docs/retrospective.md`
+
+## 기본 요구사항(F-01~F-10) 동작 여부
+
+- [x] F-01 회원가입/로그인(JWT)
+- [x] F-02 카테고리 기본 시드 + CRUD
+- [x] F-03 거래내역 CRUD
+- [x] F-04 목록 조회(월별 + 페이징)
+- [x] F-05 월별 통계(총수입/총지출/잔액 + 카테고리별)
+- [x] F-06 본인 데이터 인가
+- [x] F-07 입력 검증 + 공통 에러 응답
+- [x] F-08 프론트 화면 2종(로그인, 목록+등록)
+- [x] F-09 Swagger 문서화
+- [x] F-10 Docker + GitHub Actions + EC2 배포
 
 ## 실행 방법 (로컬, H2)
 
@@ -53,4 +75,4 @@ docker compose up -d --build
 - [x] 2일차: 카테고리 + 거래내역 CRUD
 - [x] 3일차: JWT 인증/인가 + 통계
 - [x] 4일차: 프론트 연동 + Docker/CI/CD + EC2 배포
-- [ ] 5일차: 마무리 (README/회고)
+- [x] 5일차: 마무리 (README/회고)
