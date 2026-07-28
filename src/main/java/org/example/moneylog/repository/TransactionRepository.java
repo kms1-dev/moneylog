@@ -16,6 +16,8 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
 
     Optional<Transaction> findByIdAndUserId(Long id, Long userId);
 
+    boolean existsByCategoryId(Long categoryId);
+
     Page<Transaction> findByUserIdAndTransactionDateBetweenOrderByTransactionDateDesc(
             Long userId, LocalDate from, LocalDate to, Pageable pageable);
 

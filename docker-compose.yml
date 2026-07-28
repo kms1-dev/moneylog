@@ -2,10 +2,10 @@ services:
   mysql:
     image: mysql:8.0
     environment:
-      MYSQL_DATABASE: moneylog
-      MYSQL_USER: moneyloguser
-      MYSQL_PASSWORD: money1234
-      MYSQL_ROOT_PASSWORD: root1234
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
     ports:
       - "3307:3306"
     volumes:
@@ -18,8 +18,13 @@ services:
       - mysql
     environment:
       SPRING_PROFILES_ACTIVE: prod
+      DB_URL: jdbc:mysql://mysql:3306/${DB_NAME}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
     ports:
-      - "8081:8080"
+      # 로컬은 8081, EC2에서는 .env에서 APP_PORT=8080으로 바꿔서 쓴다.
+      - "${APP_PORT:-8081}:8080"
     restart: on-failure
 
 volumes:

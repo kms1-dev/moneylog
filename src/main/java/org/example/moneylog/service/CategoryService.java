@@ -6,8 +6,10 @@ import org.example.moneylog.domain.CategoryType;
 import org.example.moneylog.domain.User;
 import org.example.moneylog.dto.CategoryRequest;
 import org.example.moneylog.dto.CategoryResponse;
+import org.example.moneylog.exception.CategoryInUseException;
 import org.example.moneylog.exception.CategoryNotFoundException;
 import org.example.moneylog.repository.CategoryRepository;
+import org.example.moneylog.repository.TransactionRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +20,7 @@ import java.util.List;
 public class CategoryService {
 
     private final CategoryRepository categoryRepository;
+    private final TransactionRepository transactionRepository;
 
     // 회원가입 시 기본 카테고리 자동 생성 (지출: 식비/교통/주거/문화, 수입: 급여/용돈)
     @Transactional
@@ -55,6 +58,10 @@ public class CategoryService {
     public void deleteCategory(Long userId, Long categoryId) {
         Category category = categoryRepository.findByIdAndUserId(categoryId, userId)
                 .orElseThrow(CategoryNotFoundException::new);
+        // 이 카테고리를 쓰는 거래가 남아있으면 DB에서 삭제가 막히기 때문에 미리 확인한다.
+        if (transactionRepository.existsByCategoryId(categoryId)) {
+            throw new CategoryInUseException();
+        }
         categoryRepository.delete(category);
     }
 }

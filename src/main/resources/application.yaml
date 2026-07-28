@@ -27,6 +27,6 @@ spring:
         format_sql: true
 
 jwt:
-  # 3일차에 실제 값으로 교체 (환경변수로 빼는 게 안전함)
-  secret: moneylog-study-secret-key-change-me-please-1234567890
+  # 운영에서는 JWT_SECRET 환경변수로 넣는다. 아래 값은 로컬에서만 쓰는 기본값.
+  secret: ${JWT_SECRET:local-dev-only-secret-key-1234567890-abcdefghij}
   expiration-ms: 3600000

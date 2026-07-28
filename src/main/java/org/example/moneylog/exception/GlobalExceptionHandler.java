@@ -7,6 +7,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.time.format.DateTimeParseException;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -20,6 +22,19 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiResponse<Void>> handleTransactionNotFound(TransactionNotFoundException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(ApiResponse.error("TRANSACTION_NOT_FOUND", e.getMessage()));
+    }
+
+    @ExceptionHandler(CategoryInUseException.class)
+    public ResponseEntity<ApiResponse<Void>> handleCategoryInUse(CategoryInUseException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(ApiResponse.error("CATEGORY_IN_USE", e.getMessage()));
+    }
+
+    // yearMonth를 "2026-07" 형식이 아닌 값으로 보내면 여기서 걸린다.
+    @ExceptionHandler(DateTimeParseException.class)
+    public ResponseEntity<ApiResponse<Void>> handleDateTimeParse(DateTimeParseException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(ApiResponse.error("VALIDATION_ERROR", "날짜 형식이 올바르지 않습니다. (예: 2026-07)"));
     }
 
     @ExceptionHandler(DuplicateEmailException.class)
