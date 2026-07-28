@@ -30,6 +30,6 @@ IntelliJ에서 프로젝트를 열고 `MoneylogApplication`을 실행하거나, 
 
 - [x] 1일차: 요구사항/설계 문서, Git 저장소, 프로젝트 셋업
 - [x] 2일차: 카테고리 + 거래내역 CRUD
-- [ ] 3일차: JWT 인증/인가 + 통계
+- [x] 3일차: JWT 인증/인가 + 통계
 - [ ] 4일차: 프론트 연동 + Docker/CI/CD + EC2 배포
 - [ ] 5일차: 마무리 (README/회고)
